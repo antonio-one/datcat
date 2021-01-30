@@ -7,7 +7,7 @@ Filetype: .json \
 Naming: your_schema_name_v1.json \
 Platform: bigquery
 
-###Format of a simple schema
+###Format of a Simple Schema
 ```json
 [
   {
@@ -34,7 +34,7 @@ CATALOGUE_PORT=8080
 CATALOGUE_DEBUG=False
 PYTHONPATH=/datcat
 ```
-### Build and run it inside a docker container example
+### Build and Run it Inside a Docker Container Example
 
 ```bash
 source .env
@@ -47,3 +47,8 @@ docker run --hostname datcat \
 ```
 
 Now go to: http://0.0.0.0.8080 to see it
+
+### Test Coverage
+```bash
+pytest --cov=. tests/ | grep -v .env
+```

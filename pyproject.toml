@@ -20,6 +20,7 @@ pytest-env = "^0.6.2"
 [tool.poetry.dev-dependencies]
 pre-commit = "^2.10.0"
 pytest = "^6.2.2"
+pytest-cov = "^2.11.1"
 
 [tool.poetry.scripts]
 datcat = "entrypoints.flask_app:main"
