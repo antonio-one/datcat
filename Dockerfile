@@ -11,7 +11,8 @@ FROM python-base as dependency-base
 RUN apt-get update; \
     DEBIAN_FRONTEND=noninteractive \
     apt-get install -y curl \
-    build-essential
+    build-essential \
+    procps
 
 EXPOSE ${CATALOGUE_PORT}
 
@@ -26,8 +27,8 @@ ADD domain/ ./domain/
 ADD entrypoints/ ./entrypoints/
 ADD schemas/ ./schemas/
 ADD settings.py ./settings.py
-ADD .secrets/ ./.secrets/
 
 RUN pip3 install $(find dist/ -name *whl)
 
-ENTRYPOINT ["python", "entrypoints/flask_app.py"]
+#ENTRYPOINT ["tail", "-f", "/dev/null"]
+ENTRYPOINT ["python", "/datcat/entrypoints/flask_app.py"]
