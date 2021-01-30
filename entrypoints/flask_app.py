@@ -3,7 +3,13 @@ from flask_api import FlaskAPI, status
 
 from adapters import repository
 from domain import model
-from settings import CATALOGUE_DEBUG, CATALOGUE_HOST, CATALOGUE_PORT, SCHEMAS_PATH, MAPPINGS_FILEPATH
+from settings import (
+    CATALOGUE_DEBUG,
+    CATALOGUE_HOST,
+    CATALOGUE_PORT,
+    MAPPINGS_FILEPATH,
+    SCHEMAS_PATH,
+)
 
 SCHEMA_REPOSITORY = repository.SchemaRepository()
 MAPPINGS_REPOSITORY = repository.MappingsRepository()

@@ -45,7 +45,7 @@ class MappingFormat:
 
     @property
     def schema_name(self) -> str:
-        return self.schema_name_version.rpartition('_')[0]
+        return self.schema_name_version.rpartition("_")[0]
 
     @property
     def topic_name(self) -> str:
@@ -62,5 +62,5 @@ class MappingFormat:
             "schema_name": self.schema_name,
             "schema_name_version": self.schema_name_version,
             "topic_name": self.topic_name,
-            "subscription_name": self.subscription_name
+            "subscription_name": self.subscription_name,
         }

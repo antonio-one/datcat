@@ -1,13 +1,13 @@
 import json
+import logging
 import typing
+
 from adapters import repository
 from domain.model import MappingFormat
-from settings import SCHEMAS_PATH, MAPPINGS_FILEPATH
-import logging
+from settings import MAPPINGS_FILEPATH, SCHEMAS_PATH
 
-
-FORMAT = '%(asctime)s [%(levelname)s] %(module)s:%(funcName)s %(message)s'
-logging.basicConfig(encoding='utf-8', level=logging.INFO, format=FORMAT)
+FORMAT = "%(asctime)s [%(levelname)s] %(module)s:%(funcName)s %(message)s"
+logging.basicConfig(encoding="utf-8", level=logging.INFO, format=FORMAT)
 
 
 def create_mappings():
