@@ -56,4 +56,3 @@ class SchemaRepository(AbstractSchemaRepository):
         except json.JSONDecodeError as jde:
             output = [{"JSONDecodeError": f"{jde}"}]
         return output
-

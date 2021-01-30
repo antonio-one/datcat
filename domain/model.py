@@ -31,4 +31,3 @@ class SchemaFormat:
     @property
     def querystring(self) -> str:
         return urlencode(self.params)
-

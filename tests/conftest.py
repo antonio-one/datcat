@@ -1,10 +1,10 @@
 import typing
+from os import getenv
 
 import pytest
+
 from adapters import repository
 from entrypoints import flask_app
-
-from os import getenv
 
 
 @pytest.fixture(scope="session")
