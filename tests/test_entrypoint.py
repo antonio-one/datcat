@@ -8,7 +8,7 @@ from domain import model
 
 def test_retrieve_schema_from_api(client, schemas_path):
     response = client.get(
-        "/search_by_key",
+        "schemas/search_by_key",
         query_string={
             "schema_name": "schema_one",
             "schema_version": "1",
@@ -27,7 +27,7 @@ def test_retrieve_schema_from_api(client, schemas_path):
 
 def test_retrieve_no_content_from_api(client):
     response = client.get(
-        "/search_by_key",
+        "/schemas/search_by_key",
         query_string={
             "schema_name": "unknown",
             "schema_version": "0",
@@ -39,7 +39,7 @@ def test_retrieve_no_content_from_api(client):
 
 def test_list_all_from_api(client, schemas_path):
 
-    response = client.get("/list_catalogue", query_string={"refresh": "True"})
+    response = client.get("/schemas", query_string={"refresh": "True"})
     actual_schemas = json.loads(response.data)
     assert response.status_code == 200
 
