@@ -3,25 +3,35 @@ from flask_api import FlaskAPI, status
 
 from adapters import repository
 from domain import model
-from settings import CATALOGUE_DEBUG, CATALOGUE_HOST, CATALOGUE_PORT, SCHEMAS_PATH
+from settings import CATALOGUE_DEBUG, CATALOGUE_HOST, CATALOGUE_PORT, SCHEMAS_PATH, MAPPINGS_FILEPATH
 
 SCHEMA_REPOSITORY = repository.SchemaRepository()
+MAPPINGS_REPOSITORY = repository.MappingsRepository()
 
 app = FlaskAPI(__name__)
 
 
-def refresh_repository():
-    global SCHEMA_REPOSITORY
-    SCHEMA_REPOSITORY.load(SCHEMAS_PATH)
+def refresh_repository(repository_type: str) -> None:
+    """
+
+    :param repository_type: schema | mappings
+    :return:
+    """
+    if repository_type == "schema":
+        global SCHEMA_REPOSITORY
+        SCHEMA_REPOSITORY.load(SCHEMAS_PATH)
+    elif repository_type == "mappings":
+        global MAPPINGS_REPOSITORY
+        MAPPINGS_REPOSITORY.load(MAPPINGS_FILEPATH)
 
 
 @app.route("/")
 def default():
-    return redirect("/list_catalogue?refresh=True", code=302)
+    return redirect("/schemas?refresh=True", code=302)
 
 
-@app.route("/search_by_key", methods=["GET"])
-@app.route("/list_catalogue", methods=["GET"])
+@app.route("/schemas", methods=["GET"])
+@app.route("/schemas/search_by_key", methods=["GET"])
 def list_catalogue():
 
     schema_name = request.args.get("schema_name", type=str)
@@ -32,12 +42,29 @@ def list_catalogue():
     )
 
     if refresh is True:
-        refresh_repository()
+        refresh_repository(repository_type="schema")
 
     if schema_name is not None and schema_version is not None:
         response = SCHEMA_REPOSITORY.get(sf.schema_name_version)
     else:
         response = SCHEMA_REPOSITORY.list_all()
+
+    if response is None:
+        return "", status.HTTP_204_NO_CONTENT
+
+    return jsonify(response)
+
+
+@app.route("/mappings", methods=["GET"])
+@app.route("/mappings/search_by_key", methods=["GET"])
+def list_mappings():
+
+    refresh = request.args.get("refresh", type=bool, default=False)
+
+    if refresh is True:
+        refresh_repository(repository_type="mappings")
+
+    response = MAPPINGS_REPOSITORY.list_all()
 
     if response is None:
         return "", status.HTTP_204_NO_CONTENT

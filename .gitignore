@@ -4,6 +4,6 @@ __pycache__
 .secrets
 .env
 build.sh
-schemas/*.json
+catalogue/schemas/*.json
 .old
 dist
