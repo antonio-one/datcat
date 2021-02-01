@@ -4,6 +4,13 @@ version = "0.1.0"
 description = "Simple Data Catalogue API"
 authors = ["Antonio <antonio.one@pm.me>"]
 license = "TBC"
+readme = "README.md"
+homepage = "https://github.com/antonio-one/datcat"
+repository = "https://github.com/antonio-one/datcat"
+keywords = ["python", "flask", "data", "catalogue", "api"]
+classifiers = []
+include = []
+
 packages = [
     { include = "adapters" },
     { include = "domain" },
@@ -15,12 +22,12 @@ python = "^3.8"
 Flask = "^1.1.2"
 Flask-API = "^2.0"
 python-decouple = "^3.4"
-pytest-env = "^0.6.2"
 
 [tool.poetry.dev-dependencies]
 pre-commit = "^2.10.0"
 pytest = "^6.2.2"
 pytest-cov = "^2.11.1"
+pytest-env = "^0.6.2"
 
 [tool.poetry.scripts]
 datcat = "entrypoints.flask_app:main"

@@ -2,7 +2,7 @@
 Simple data catalogue api.
 
 ###Convensions
-Location: /datcat/schemas \
+Location: /datcat/catalogue/schemas \
 Filetype: .json \
 Naming: your_schema_name_v1.json \
 Platform: bigquery
@@ -27,7 +27,7 @@ Platform: bigquery
 ### .env.example
 ```bash
 #settings
-SCHEMAS_PATH=/datcat/schemas
+SCHEMAS_PATH=catalogue/schemas
 CATALOGUE_SCHEME=http
 CATALOGUE_HOST=0.0.0.0
 CATALOGUE_PORT=8080
