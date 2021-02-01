@@ -4,7 +4,7 @@ import os
 import typing
 from glob import glob
 
-from domain import model
+from datcat.domain import model
 
 
 class AbstractRepository:

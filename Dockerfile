@@ -9,10 +9,7 @@ ENV PYTHONUNBUFFERED=1 \
 FROM python-base as dependency-base
 
 RUN apt-get update; \
-    DEBIAN_FRONTEND=noninteractive \
-    apt-get install -y curl \
-    build-essential \
-    procps
+    apt-get install -y build-essential
 
 EXPOSE ${CATALOGUE_PORT}
 
@@ -21,13 +18,13 @@ FROM dependency-base as development-base
 
 WORKDIR ${PYTHONPATH}/
 ADD .env ./.env
-ADD adapters/ ./adapters/
+ADD datcat/adapters/ ./adapters/
 ADD dist/ ./dist/
-ADD domain/ ./domain/
-ADD entrypoints/ ./entrypoints/
+ADD datcat/domain/ ./domain/
+ADD datcat/entrypoints/ ./entrypoints/
 ADD catalogue/ ./catalogue/
 ADD settings.py ./settings.py
 
 RUN pip3 install $(find dist/ -name *whl)
 
-ENTRYPOINT ["python", "/datcat/entrypoints/flask_app.py"]
+ENTRYPOINT ["python", "entrypoints/flask_app.py"]

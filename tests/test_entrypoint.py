@@ -3,7 +3,7 @@ import os
 import pathlib
 from glob import glob
 
-from domain import model
+from datcat.domain import model
 
 
 def test_retrieve_schema_from_api(client, schemas_path):
