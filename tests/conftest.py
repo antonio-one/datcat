@@ -3,8 +3,8 @@ from os import getenv
 
 import pytest
 
-from adapters import repository
-from entrypoints import flask_app
+from datcat.adapters import repository
+from datcat.entrypoints import flask_app
 
 
 @pytest.fixture(scope="session")

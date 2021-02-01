@@ -2,8 +2,8 @@ import json
 import logging
 import typing
 
-from adapters import repository
-from domain.model import MappingFormat
+from datcat.adapters import repository
+from datcat.domain import MappingFormat
 from settings import MAPPINGS_FILEPATH, SCHEMAS_PATH
 
 FORMAT = "%(asctime)s [%(levelname)s] %(module)s:%(funcName)s %(message)s"

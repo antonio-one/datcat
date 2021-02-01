@@ -1,8 +1,8 @@
 from flask import jsonify, redirect, request
 from flask_api import FlaskAPI, status
 
-from adapters import repository
-from domain import model
+from datcat.adapters import repository
+from datcat.domain import model
 from settings import (
     CATALOGUE_DEBUG,
     CATALOGUE_HOST,
