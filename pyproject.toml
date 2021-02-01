@@ -4,11 +4,6 @@ version = "0.1.0"
 description = "Simple Data Catalogue API"
 authors = ["Antonio <antonio.one@pm.me>"]
 license = "TBC"
-packages = [
-    { include = "adapters" },
-    { include = "domain" },
-    { include = "entrypoints" },
-]
 
 [tool.poetry.dependencies]
 python = "^3.8"
