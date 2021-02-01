@@ -28,10 +28,14 @@ Platform: bigquery
 ```bash
 #settings
 SCHEMAS_PATH=catalogue/schemas
+METADATA_PATH=catalogue/metadata
+MAPPINGS_FILEPATH=catalogue/mappings/schema_topic_subscription.json
+
 CATALOGUE_SCHEME=http
 CATALOGUE_HOST=0.0.0.0
-CATALOGUE_PORT=8080
+CATALOGUE_PORT=50000
 CATALOGUE_DEBUG=False
+
 PYTHONPATH=/datcat
 ```
 ### Build and Run it Inside a Docker Container Example
