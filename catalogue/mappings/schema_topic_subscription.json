@@ -1,0 +1,74 @@
+{
+  "nested_and_repeated": {
+    "schema_name": "nested_and_repeated",
+    "schema_name_version": "nested_and_repeated_v1",
+    "topic_name": "nested_and_repeated_topic",
+    "subscription_name": "nested_and_repeated_subscription"
+  },
+  "nested_and_repeated_v1": {
+    "schema_name": "nested_and_repeated",
+    "schema_name_version": "nested_and_repeated_v1",
+    "topic_name": "nested_and_repeated_topic",
+    "subscription_name": "nested_and_repeated_subscription"
+  },
+  "nested_and_repeated_topic": {
+    "schema_name": "nested_and_repeated",
+    "schema_name_version": "nested_and_repeated_v1",
+    "topic_name": "nested_and_repeated_topic",
+    "subscription_name": "nested_and_repeated_subscription"
+  },
+  "nested_and_repeated_subscription": {
+    "schema_name": "nested_and_repeated",
+    "schema_name_version": "nested_and_repeated_v1",
+    "topic_name": "nested_and_repeated_topic",
+    "subscription_name": "nested_and_repeated_subscription"
+  },
+  "all_datatypes": {
+    "schema_name": "all_datatypes",
+    "schema_name_version": "all_datatypes_v1",
+    "topic_name": "all_datatypes_topic",
+    "subscription_name": "all_datatypes_subscription"
+  },
+  "all_datatypes_v1": {
+    "schema_name": "all_datatypes",
+    "schema_name_version": "all_datatypes_v1",
+    "topic_name": "all_datatypes_topic",
+    "subscription_name": "all_datatypes_subscription"
+  },
+  "all_datatypes_topic": {
+    "schema_name": "all_datatypes",
+    "schema_name_version": "all_datatypes_v1",
+    "topic_name": "all_datatypes_topic",
+    "subscription_name": "all_datatypes_subscription"
+  },
+  "all_datatypes_subscription": {
+    "schema_name": "all_datatypes",
+    "schema_name_version": "all_datatypes_v1",
+    "topic_name": "all_datatypes_topic",
+    "subscription_name": "all_datatypes_subscription"
+  },
+  "simple": {
+    "schema_name": "simple",
+    "schema_name_version": "simple_v1",
+    "topic_name": "simple_topic",
+    "subscription_name": "simple_subscription"
+  },
+  "simple_v1": {
+    "schema_name": "simple",
+    "schema_name_version": "simple_v1",
+    "topic_name": "simple_topic",
+    "subscription_name": "simple_subscription"
+  },
+  "simple_topic": {
+    "schema_name": "simple",
+    "schema_name_version": "simple_v1",
+    "topic_name": "simple_topic",
+    "subscription_name": "simple_subscription"
+  },
+  "simple_subscription": {
+    "schema_name": "simple",
+    "schema_name_version": "simple_v1",
+    "topic_name": "simple_topic",
+    "subscription_name": "simple_subscription"
+  }
+}

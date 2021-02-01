@@ -25,10 +25,9 @@ ADD adapters/ ./adapters/
 ADD dist/ ./dist/
 ADD domain/ ./domain/
 ADD entrypoints/ ./entrypoints/
-ADD schemas/ ./schemas/
+ADD catalogue/ ./catalogue/
 ADD settings.py ./settings.py
 
 RUN pip3 install $(find dist/ -name *whl)
 
-#ENTRYPOINT ["tail", "-f", "/dev/null"]
 ENTRYPOINT ["python", "/datcat/entrypoints/flask_app.py"]

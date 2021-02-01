@@ -2,12 +2,12 @@
 Simple data catalogue api.
 
 ###Convensions
-Location: /datcat/schemas \
+Location: /datcat/catalogue/schemas \
 Filetype: .json \
 Naming: your_schema_name_v1.json \
 Platform: bigquery
 
-###Format of a simple schema
+###Format of a Simple Schema
 ```json
 [
   {
@@ -27,14 +27,18 @@ Platform: bigquery
 ### .env.example
 ```bash
 #settings
-SCHEMAS_PATH=/datcat/schemas
+SCHEMAS_PATH=catalogue/schemas
+METADATA_PATH=catalogue/metadata
+MAPPINGS_FILEPATH=catalogue/mappings/schema_topic_subscription.json
+
 CATALOGUE_SCHEME=http
 CATALOGUE_HOST=0.0.0.0
-CATALOGUE_PORT=8080
+CATALOGUE_PORT=50000
 CATALOGUE_DEBUG=False
+
 PYTHONPATH=/datcat
 ```
-### Build and run it inside a docker container example
+### Build and Run it Inside a Docker Container Example
 
 ```bash
 source .env
@@ -47,3 +51,8 @@ docker run --hostname datcat \
 ```
 
 Now go to: http://0.0.0.0.8080 to see it
+
+### Test Coverage
+```bash
+pytest --cov=. tests/ | grep -v .env
+```
