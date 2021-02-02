@@ -2,8 +2,7 @@
 FROM python:3.8-slim as python-base
 
 ENV PYTHONUNBUFFERED=1 \
-    PYTHONDONTWRITEBYTECODE=1 \
-    PYTHONPATH="/datcat"
+    PYTHONDONTWRITEBYTECODE=1
 
 # stage 2
 FROM python-base as dependency-base
@@ -16,7 +15,7 @@ EXPOSE ${CATALOGUE_PORT}
 # stage 3
 FROM dependency-base as development-base
 
-WORKDIR ${PYTHONPATH}/
+WORKDIR /datcat/
 ADD .env ./.env
 ADD datcat/adapters/ ./adapters/
 ADD dist/ ./dist/
