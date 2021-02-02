@@ -2,7 +2,8 @@
 FROM python:3.8-slim as python-base
 
 ENV PYTHONUNBUFFERED=1 \
-    PYTHONDONTWRITEBYTECODE=1
+    PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONPATH=${PYTHONPATH}:/datcat
 
 # stage 2
 FROM python-base as dependency-base
