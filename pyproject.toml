@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "datcat"
-version = "0.1.0"
+version = "0.1.1"
 description = "Simple Data Catalogue API"
 authors = ["Antonio <antonio.one@pm.me>"]
 license = "TBC"
@@ -20,6 +20,15 @@ pre-commit = "^2.10.0"
 pytest = "^6.2.2"
 pytest-cov = "^2.11.1"
 pytest-env = "^0.6.2"
+black = "^20.8b1"
+flake8 = "^3.8.4"
+isort = "^5.7.0"
+
+[tool.black]
+#
+
+[tool.isort]
+#
 
 [tool.poetry.scripts]
 datcat = "datcat.entrypoints.flask_app:main"
