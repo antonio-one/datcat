@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "datcat"
-version = "0.1.1"
+version = "0.1.3"
 description = "Simple Data Catalogue API"
 authors = ["Antonio <antonio.one@pm.me>"]
 license = "TBC"

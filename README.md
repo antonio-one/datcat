@@ -1,5 +1,6 @@
 ## DatCat
 Simple data catalogue api.
+Please note this is an alpha version and still in active development.
 
 ###Convensions
 Location: /datcat/catalogue/schemas \
@@ -35,8 +36,6 @@ CATALOGUE_SCHEME=http
 CATALOGUE_HOST=0.0.0.0
 CATALOGUE_PORT=50000
 CATALOGUE_DEBUG=False
-
-PYTHONPATH=/datcat
 ```
 ### Build and Run it Inside a Docker Container Example
 
