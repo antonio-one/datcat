@@ -3,7 +3,7 @@ from flask_api import FlaskAPI, status
 
 from datcat.adapters import repository
 from datcat.domain import model
-from settings import (
+from datcat.settings import (
     CATALOGUE_DEBUG,
     CATALOGUE_HOST,
     CATALOGUE_PORT,

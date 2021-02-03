@@ -4,7 +4,7 @@ import typing
 
 from datcat.adapters import repository
 from datcat.domain import MappingFormat
-from settings import MAPPINGS_FILEPATH, SCHEMAS_PATH
+from datcat.settings import MAPPINGS_FILEPATH, SCHEMAS_PATH
 
 FORMAT = "%(asctime)s [%(levelname)s] %(module)s:%(funcName)s %(message)s"
 logging.basicConfig(encoding="utf-8", level=logging.INFO, format=FORMAT)

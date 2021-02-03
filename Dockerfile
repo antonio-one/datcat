@@ -2,8 +2,7 @@
 FROM python:3.8-slim as python-base
 
 ENV PYTHONUNBUFFERED=1 \
-    PYTHONDONTWRITEBYTECODE=1 \
-    PYTHONPATH=${PYTHONPATH}:/datcat
+    PYTHONDONTWRITEBYTECODE=1
 
 # stage 2
 FROM python-base as dependency-base
@@ -16,15 +15,15 @@ EXPOSE ${CATALOGUE_PORT}
 # stage 3
 FROM dependency-base as development-base
 
-WORKDIR /datcat/
-ADD .env ./.env
-ADD datcat/adapters/ ./adapters/
-ADD dist/ ./dist/
-ADD datcat/domain/ ./domain/
-ADD datcat/entrypoints/ ./entrypoints/
-ADD catalogue/ ./catalogue/
-ADD settings.py ./settings.py
+ARG WHEEL=datcat-0.1.3-py3-none-any.whl
+ARG APPDIR=/datcat
 
-RUN pip3 install $(find dist/ -name *whl)
+WORKDIR ${APPDIR}/
+ADD catalogue/ ./catalogue
+ADD datcat/ ./
+ADD dist/${WHEEL} ./
+ADD .env ./
+
+RUN pip3 install ${APPDIR}/${WHEEL}
 
 ENTRYPOINT ["python", "entrypoints/flask_app.py"]
