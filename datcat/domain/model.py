@@ -1,17 +1,23 @@
 import typing
 from urllib.parse import urlencode
 
-SchemaKey = typing.NewType("SchemaKey", str)
-SchemaValue = typing.NewType("SchemaValue", typing.Any)
-SchemaField = typing.Dict[SchemaKey, SchemaValue]
-SchemaDefinition = typing.NewType("SchemaDefinition", typing.List[SchemaField])
-SchemaRepo = typing.NewType("SchemaRepo", typing.Dict[SchemaKey, SchemaDefinition])
+BaseKey = typing.NewType("SchemaKey", str)
+BaseValue = typing.NewType("BaseValue", str)
+BaseField = typing.Dict[BaseKey, BaseValue]
+BaseDefinition = typing.NewType("BaseDefinition", typing.List[BaseField])
+BaseRepo = typing.NewType("BaseRepository", typing.Dict[BaseKey, BaseDefinition])
 
-MappingKey = SchemaKey
-MappingValue = SchemaValue
-MappingField = SchemaField
-MappingDefinition = SchemaDefinition
-MappingRepo = SchemaRepo
+SchemaKey = BaseKey
+SchemaValue = BaseValue
+SchemaField = BaseField
+SchemaDefinition = BaseDefinition
+SchemaRepo = BaseRepo
+
+MappingKey = BaseKey
+MappingValue = BaseValue
+MappingField = BaseField
+MappingDefinition = BaseDefinition
+MappingRepo = BaseRepo
 
 
 class SchemaFormat:
@@ -60,7 +66,6 @@ class MappingFormat:
     def mapping(self):
         return {
             "schema_name": self.schema_name,
-            "schema_name_version": self.schema_name_version,
             "topic_name": self.topic_name,
             "subscription_name": self.subscription_name,
         }

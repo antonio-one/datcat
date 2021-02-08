@@ -62,7 +62,7 @@ class SchemaRepository(AbstractRepository):
         return output
 
 
-class MappingsRepository:
+class MappingsRepository(AbstractRepository):
     def __init__(self):
         self.in_memory_mappings_repository: model.MappingRepo = {}
 

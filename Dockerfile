@@ -8,7 +8,9 @@ ENV PYTHONUNBUFFERED=1 \
 FROM python-base as dependency-base
 
 RUN apt-get update; \
-    apt-get install -y build-essential
+    apt-get install -y build-essential \
+    procps \
+    iputils-ping
 
 EXPOSE ${CATALOGUE_PORT}
 
