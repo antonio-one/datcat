@@ -24,15 +24,12 @@ black = "^20.8b1"
 flake8 = "^3.8.4"
 isort = "^5.7.0"
 
-[tool.black]
-#
-
 [tool.isort]
-#
+profile = "black"
 
 [tool.poetry.scripts]
 datcat = "datcat.entrypoints.flask_app:main"
-create_mappings = "helpers:create_mappings"
+create_mappings = "datcat.helpers:create_mappings"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

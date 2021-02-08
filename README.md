@@ -52,12 +52,12 @@ poetry build --format wheel
 docker build --tag datcat .
 
 # make a hostname for fun
-DATCAT_HOSTNAME="datcat_"$(uuidgen | awk -F- "{print $1}")
-echo "DATCAT_HOSTNAME=${DATCAT_HOSTNAME}"
+CONTAINER_HOSTNAME="datcat_"$(uuidgen | awk -F- "{print $1}")
+echo "CONTAINER_HOSTNAME=${CONTAINER_HOSTNAME}"
 
 # run it
 CONTAINER_ID=$(
-docker run --hostname "${DATCAT_HOSTNAME}" \
+docker run --hostname "${CONTAINER_HOSTNAME}" \
   --name datcat \
   --env-file .env \
   --publish 50000:"${CATALOGUE_PORT}" \
@@ -65,7 +65,7 @@ docker run --hostname "${DATCAT_HOSTNAME}" \
   )
 
 # copy the stop command to clipboard for convenience
-echo "[STOP COMMAND] docker stop ${CONTAINER_ID}" | pbcopy
+echo "docker stop ${CONTAINER_ID}" | pbcopy
 
 # container cli
 docker exec -it "${CONTAINER_ID}" /bin/bash
