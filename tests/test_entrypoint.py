@@ -10,7 +10,7 @@ def test_retrieve_schema_from_api(client, schemas_path):
     response = client.get(
         "schemas/search_by_key",
         query_string={
-            "schema_name": "schema_one",
+            "schema_class_name": "schema_one",
             "schema_version": "1",
             "refresh": "True",
         },
@@ -29,7 +29,7 @@ def test_retrieve_no_content_from_api(client):
     response = client.get(
         "/schemas/search_by_key",
         query_string={
-            "schema_name": "unknown",
+            "schema_class_name": "unknown",
             "schema_version": "0",
             "refresh": "True",
         },

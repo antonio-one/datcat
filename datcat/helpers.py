@@ -22,7 +22,7 @@ def create_mappings():
         cf = model.MappingFormat(schema_name_version=schema_name_version)
         m_key = schema_name_version
         m_value = {
-            "schema_name": cf.schema_name,
+            "schema_class_name": cf.schema_class_name,
             "topic_name": cf.topic_name,
             "subscription_name": cf.subscription_name,
         }
