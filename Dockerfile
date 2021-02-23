@@ -1,11 +1,11 @@
 # stage 1
-FROM python:3.8-slim as python-base
+FROM python:3.8-slim as python38-base
 
 ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1
 
 # stage 2
-FROM python-base as dependency-base
+FROM python38-base as dependency-base
 
 RUN apt-get update; \
     apt-get install -y build-essential \
@@ -15,7 +15,7 @@ RUN apt-get update; \
 EXPOSE ${CATALOGUE_PORT}
 
 # stage 3
-FROM dependency-base as development-base
+FROM dependency-base as datcat-base
 
 ARG WHEEL=datcat-0.1.3-py3-none-any.whl
 ARG APPDIR=/datcat
