@@ -8,3 +8,4 @@ catalogue/*/*.json
 .old
 dist
 .coverage
+**.pyc

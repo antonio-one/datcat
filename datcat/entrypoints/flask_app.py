@@ -40,7 +40,7 @@ def default():
 @app.route("/schemas/search_by_key", methods=["GET"])
 def list_catalogue():
 
-    schema_name = request.args.get("schema_name", type=str)
+    schema_name = request.args.get("schema_class_name", type=str)
     schema_version = request.args.get("schema_version", type=int)
     refresh = request.args.get("refresh", type=bool, default=False)
     sf = model.SchemaFormat(

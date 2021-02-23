@@ -78,3 +78,6 @@ Now go to: http://0.0.0.0:50000 to see it
 cd tests
 pytest -vv --cov=. | grep -v .env
 ```
+
+### Partition support
+Note hack {"option": "partition"} in the column description.
