@@ -19,7 +19,7 @@ env:
   GKE_PROJECT: ${{ secrets.GKE_PROJECT }}
   GKE_EMAIL: ${{ secrets.GKE_EMAIL }}
   GITHUB_SHA: ${{ github.sha }}
-  GKE_ZONE: us-west1-a
+  GKE_ZONE: europe-west2
   GKE_CLUSTER: ancient-kube
   IMAGE: datcat
   REGISTRY_HOSTNAME: gcr.io
@@ -28,7 +28,7 @@ env:
 jobs:
   setup-build-publish-deploy:
     name: Setup, Build, Publish, and Deploy
-    runs-on: ubuntu-latest
+    runs-on: python:3.8-slim
     steps:
 
     - name: Checkout
