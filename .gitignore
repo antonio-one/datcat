@@ -6,6 +6,5 @@ __pycache__
 build.sh
 catalogue/*/*.json
 .old
-dist
 .coverage
 **.pyc
