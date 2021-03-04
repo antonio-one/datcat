@@ -3,6 +3,7 @@ from flask_api import FlaskAPI, status
 
 from datcat.adapters import repository
 from datcat.domain import model
+from datcat.helpers import create_mappings
 from datcat.settings import (
     CATALOGUE_DEBUG,
     CATALOGUE_HOST,
@@ -27,6 +28,7 @@ def refresh_repository(repository_type: str) -> None:
         global SCHEMA_REPOSITORY
         SCHEMA_REPOSITORY.load(SCHEMAS_PATH)
     elif repository_type == "mappings":
+        create_mappings()
         global MAPPINGS_REPOSITORY
         MAPPINGS_REPOSITORY.load(MAPPINGS_FILEPATH)
 
