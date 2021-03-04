@@ -24,7 +24,6 @@ WORKDIR ${APPDIR}/
 ADD catalogue/ ./catalogue
 ADD datcat/ ./
 ADD dist/${WHEEL} ./
-ADD .env ./
 
 RUN pip3 install ${APPDIR}/${WHEEL}
 
