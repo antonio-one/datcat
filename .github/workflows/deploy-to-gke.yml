@@ -13,6 +13,7 @@ jobs:
         env:
 #          IMAGE_NAME: gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_APP_NAME }}
           IMAGE_NAME: hub.docker.com/repository/docker/antonioone/datcat
+
         steps:
 
         - name: Login
@@ -28,9 +29,6 @@ jobs:
         - name: Checkout repository
           uses: actions/checkout@v2
 
-        - name: Build Docker image
-          run: docker build . -t $IMAGE_NAME
-
         - name: Create .env file
           run: |
             echo "SCHEMAS_PATH=catalogue/schemas" >> .env
@@ -40,6 +38,9 @@ jobs:
             echo "CATALOGUE_HOST=0.0.0.0" >> .env
             echo "CATALOGUE_PORT=8081" >> .env
             echo "CATALOGUE_DEBUG=False" >> .env
+
+        - name: Build Docker image
+          run: docker build . -t $IMAGE_NAME
 
         - name: Test Docker image
           run: docker run $IMAGE_NAME --env-file .env
