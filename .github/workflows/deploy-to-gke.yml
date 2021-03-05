@@ -32,20 +32,17 @@ jobs:
           run: docker build . -t $IMAGE_NAME
 
         - name: Create .env file
-          uses: SpicyPizza/create-envfile@v1
-          with:
-            envkey_SCHEMAS_PATH: "catalogue/schemas"
-            envkey_METADATA_PATH: "catalogue/metadata"
-            envkey_MAPPINGS_FILEPATH: "catalogue/mappings/schema_topic_subscription.json"
-            envkey_CATALOGUE_SCHEME: "http"
-            envkey_CATALOGUE_HOST: "0.0.0.0"
-            envkey_CATALOGUE_PORT: 8081
-            envkey_CATALOGUE_DEBUG: false
-            directory: .test
-            file_name: .env
+          run: |
+            echo "SCHEMAS_PATH=catalogue/schemas" >> .env
+            echo "METADATA_PATH=catalogue/metadata" >> .env
+            echo "MAPPINGS_FILEPATH=catalogue/mappings/schema_topic_subscription.json" >> .env
+            echo "CATALOGUE_SCHEME=http" >> .env
+            echo "CATALOGUE_HOST=0.0.0.0" >> .env
+            echo "CATALOGUE_PORT=8081" >> .env
+            echo "CATALOGUE_DEBUG=False" >> .env
 
         - name: Test Docker image
-          run: docker run $IMAGE_NAME --env-file .test/.env
+          run: docker run $IMAGE_NAME --env-file .env
 
         - name: Push Docker image
           run: docker push $IMAGE_NAME
