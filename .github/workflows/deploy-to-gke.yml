@@ -44,7 +44,7 @@ jobs:
             echo ${CATALOGUE_HOST} >> .env
             echo ${CATALOGUE_PORT} >> .env
             echo ${CATALOGUE_DEBUG} >> .env
-
+            cat .env
 #        - name: Build Docker image
 #          run: docker build . -t $IMAGE_NAME
 #
