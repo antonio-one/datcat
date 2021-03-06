@@ -43,7 +43,7 @@ jobs:
           run: docker build . -t $IMAGE_NAME
 
         - name: Test Docker image
-          run: docker run $IMAGE_NAME --env-file .env
+          run: docker run --env-file .env $IMAGE_NAME
 
         - name: Push Docker image
           run: docker push $IMAGE_NAME
