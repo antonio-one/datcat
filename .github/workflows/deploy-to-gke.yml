@@ -11,15 +11,21 @@ jobs:
         name: Setup Gcloud Account
         runs-on: ubuntu-latest
         env:
-#          IMAGE_NAME: gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_APP_NAME }}
-          IMAGE_NAME: hub.docker.com/repository/docker/antonioone/datcat
+          IMAGE_NAME: gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_APP_NAME }}
+          SCHEMAS_PATH: "catalogue/schemas"
+          METADATA_PATH: "catalogue/metadata"
+          MAPPINGS_FILEPATH: "catalogue/mappings/schema_topic_subscription.json"
+          CATALOGUE_SCHEME: "http"
+          CATALOGUE_HOST: "0.0.0.0"
+          CATALOGUE_PORT: 8081
+          CATALOGUE_DEBUG: "False"
 
         steps:
 
         - name: Login
           uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
           with:
-            GCP_PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
+            project_id: ${{ secrets.GCP_PROJECT_ID }}
             service_account_email: ${{ secrets.GCP_EMAIL }}
             service_account_key: ${{ secrets.GCP_CREDENTIALS }}
 
@@ -31,22 +37,22 @@ jobs:
 
         - name: Create .env file
           run: |
-            echo "SCHEMAS_PATH=catalogue/schemas" >> .env
-            echo "METADATA_PATH=catalogue/metadata" >> .env
-            echo "MAPPINGS_FILEPATH=catalogue/mappings/schema_topic_subscription.json" >> .env
-            echo "CATALOGUE_SCHEME=http" >> .env
-            echo "CATALOGUE_HOST=0.0.0.0" >> .env
-            echo "CATALOGUE_PORT=8081" >> .env
-            echo "CATALOGUE_DEBUG=False" >> .env
+            echo ${SCHEMAS_PATH} >> .env
+            echo ${METADATA_PATH} >> .env
+            echo ${MAPPINGS_FILEPATH} >> .env
+            echo ${CATALOGUE_SCHEME} >> .env
+            echo ${CATALOGUE_HOST} >> .env
+            echo ${CATALOGUE_PORT} >> .env
+            echo ${CATALOGUE_DEBUG} >> .env
 
-        - name: Build Docker image
-          run: docker build . -t $IMAGE_NAME
-
+#        - name: Build Docker image
+#          run: docker build . -t $IMAGE_NAME
+#
 #        - name: Test Docker image
 #          run: docker run --env-file .env $IMAGE_NAME sh -c "go test -v"
-
+#
 #        - name: Push Docker image
 #          run: docker push $IMAGE_NAME
-
-        - name: Deploy Docker image
-          run: gcloud run deploy datcat --project ${{ secrets.GCP_PROJECT_ID }} --image $IMAGE_NAME --region europe-west2-c --platform managed
+#
+#        - name: Deploy Docker image
+#          run: gcloud run deploy datcat --project ${{ secrets.GCP_PROJECT_ID }} --image $IMAGE_NAME --region europe-west2-c --platform managed
