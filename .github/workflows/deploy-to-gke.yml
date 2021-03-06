@@ -44,15 +44,15 @@ jobs:
             echo CATALOGUE_HOST=${CATALOGUE_HOST} >> .env
             echo CATALOGUE_PORT=${CATALOGUE_PORT} >> .env
             echo CATALOGUE_DEBUG=${CATALOGUE_DEBUG} >> .env
-            cat .env
-#        - name: Build Docker image
-#          run: docker build . -t $IMAGE_NAME
+
+        - name: Build Docker image
+          run: docker build . -t $IMAGE_NAME
 #
 #        - name: Test Docker image
 #          run: docker run --env-file .env $IMAGE_NAME sh -c "go test -v"
-#
-#        - name: Push Docker image
-#          run: docker push $IMAGE_NAME
-#
+
+        - name: Push Docker image
+          run: docker push $IMAGE_NAME
+
 #        - name: Deploy Docker image
 #          run: gcloud run deploy datcat --project ${{ secrets.GCP_PROJECT_ID }} --image $IMAGE_NAME --region europe-west2-c --platform managed
