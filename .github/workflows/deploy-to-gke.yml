@@ -11,14 +11,15 @@ jobs:
         name: Setup Gcloud Account
         runs-on: ubuntu-latest
         env:
-          IMAGE_NAME: gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_APP_NAME }}
-          SCHEMAS_PATH: "catalogue/schemas"
-          METADATA_PATH: "catalogue/metadata"
-          MAPPINGS_FILEPATH: "catalogue/mappings/schema_topic_subscription.json"
-          CATALOGUE_SCHEME: "http"
-          CATALOGUE_HOST: "0.0.0.0"
-          CATALOGUE_PORT: 8081
-          CATALOGUE_DEBUG: "False"
+          VERSION: 0.1.3
+          IMAGE_NAME: gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_APP_NAME }}:$VERSION
+#          SCHEMAS_PATH: "catalogue/schemas"
+#          METADATA_PATH: "catalogue/metadata"
+#          MAPPINGS_FILEPATH: "catalogue/mappings/schema_topic_subscription.json"
+#          CATALOGUE_SCHEME: "http"
+#          CATALOGUE_HOST: "0.0.0.0"
+#          CATALOGUE_PORT: 8081
+#          CATALOGUE_DEBUG: "False"
 
         steps:
 
@@ -35,18 +36,18 @@ jobs:
         - name: Checkout repository
           uses: actions/checkout@v2
 
-        - name: Create .env file
-          run: |
-            echo SCHEMAS_PATH=${SCHEMAS_PATH} >> .env
-            echo METADATA_PATH=${METADATA_PATH} >> .env
-            echo MAPPINGS_FILEPATH=${MAPPINGS_FILEPATH} >> .env
-            echo CATALOGUE_SCHEME=${CATALOGUE_SCHEME} >> .env
-            echo CATALOGUE_HOST=${CATALOGUE_HOST} >> .env
-            echo CATALOGUE_PORT=${CATALOGUE_PORT} >> .env
-            echo CATALOGUE_DEBUG=${CATALOGUE_DEBUG} >> .env
+#        - name: Create .env file
+#          run: |
+#            echo SCHEMAS_PATH=${SCHEMAS_PATH} >> .env
+#            echo METADATA_PATH=${METADATA_PATH} >> .env
+#            echo MAPPINGS_FILEPATH=${MAPPINGS_FILEPATH} >> .env
+#            echo CATALOGUE_SCHEME=${CATALOGUE_SCHEME} >> .env
+#            echo CATALOGUE_HOST=${CATALOGUE_HOST} >> .env
+#            echo CATALOGUE_PORT=${CATALOGUE_PORT} >> .env
+#            echo CATALOGUE_DEBUG=${CATALOGUE_DEBUG} >> .env
 
-        - name: Build Docker image
-          run: docker build . -t $IMAGE_NAME
+#        - name: Build Docker image
+#          run: docker build . -t $IMAGE_NAME
 #
 #        - name: Test Docker image
 #          run: docker run --env-file .env $IMAGE_NAME sh -c "some unfathomable command"
@@ -56,7 +57,8 @@ jobs:
 
         - name: Create Deployment
           run: |
-            kubectl create deployment datcat-staging --image $IMAGE_NAME
+            kubectl config current-context
+#            kubectl create deployment datcat-staging --image $IMAGE_NAME
 #            kubectl scale deployment datcat:0.1.3 --replicas=3
 #            kubectl autoscale deployment datcat-staging --cpu-percent=90 --min=1 --max=5
 #            kubectl expose deployment datcat-staging --name=datcat-staging-service  --type=LoadBalancer --port=81 --target-port=8081
