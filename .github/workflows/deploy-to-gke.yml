@@ -46,17 +46,20 @@ jobs:
 #            echo CATALOGUE_PORT=${CATALOGUE_PORT} >> .env
 #            echo CATALOGUE_DEBUG=${CATALOGUE_DEBUG} >> .env
 
-        - name: Build Docker image
-          run: docker build . -t $IMAGE_NAME
+#        - name: Build Docker image
+#          run: docker build . -t $IMAGE_NAME
 
 #        - name: Test Docker image
 #          run: docker run --env-file .env $IMAGE_NAME sh -c "some unfathomable command"
 
-        - name: Push Docker image
-          run: docker push $IMAGE_NAME
+#        - name: Push Docker image
+#          run: docker push $IMAGE_NAME
 
         - name: Create Deployment
           run: |
+            gcloud config set project $project_id
+            gcloud config set compute/zone europe-west2-c
+            gcloud config set compute/region europe-west2
             gcloud container clusters get-credentials heuristic
 #            kubectl config current-context
 #            kubectl create deployment datcat-staging --image $IMAGE_NAME
