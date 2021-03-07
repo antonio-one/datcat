@@ -57,7 +57,7 @@ jobs:
 
         - name: Create Deployment
           run: |
-            gcloud config set project $project_id
+            gcloud config set project ${{ secrets.GCP_PROJECT_ID }}
             gcloud config set compute/zone europe-west2-c
             gcloud config set compute/region europe-west2
             gcloud container clusters get-credentials heuristic
