@@ -12,7 +12,7 @@ jobs:
         runs-on: ubuntu-latest
         env:
           VERSION: 0.1.3
-          IMAGE_NAME: gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_APP_NAME }}:$VERSION
+          IMAGE_NAME: gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_APP_NAME }}
 #          SCHEMAS_PATH: "catalogue/schemas"
 #          METADATA_PATH: "catalogue/metadata"
 #          MAPPINGS_FILEPATH: "catalogue/mappings/schema_topic_subscription.json"
