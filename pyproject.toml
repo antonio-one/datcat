@@ -16,7 +16,7 @@ Flask-API = "^2.0"
 python-decouple = "^3.4"
 
 [tool.poetry.dev-dependencies]
-pre-commit = "^2.10.0"
+pre-commit = "^2.11.0"
 pytest = "^6.2.2"
 pytest-cov = "^2.11.1"
 pytest-env = "^0.6.2"
