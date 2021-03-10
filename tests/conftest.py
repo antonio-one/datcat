@@ -2,9 +2,11 @@ import typing
 from os import getenv
 
 import pytest
+from fastapi.testclient import TestClient
 
 from datcat.adapters import repository
 from datcat.entrypoints import flask_app
+from datcat.entrypoints.app import app
 
 
 @pytest.fixture(scope="session")
@@ -24,3 +26,8 @@ def client():
     flask_app.app.config["TESTING"] = True
     with flask_app.app.test_client() as client:
         yield client
+
+
+@pytest.fixture(scope="function")
+def test_client():
+    return TestClient(app)
