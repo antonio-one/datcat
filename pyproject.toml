@@ -7,7 +7,7 @@ license = "TBC"
 readme = "README.md"
 homepage = "https://github.com/antonio-one/datcat"
 repository = "https://github.com/antonio-one/datcat"
-keywords = ["python", "flask", "data", "catalogue", "api"]
+keywords = ["python", "fastapi", "data", "catalogue", "api"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
@@ -15,6 +15,7 @@ Flask = "^1.1.2"
 Flask-API = "^2.0"
 python-decouple = "^3.4"
 fastapi = "^0.63.0"
+requests = "^2.25.1"
 
 [tool.poetry.dev-dependencies]
 pre-commit = "^2.11.0"
