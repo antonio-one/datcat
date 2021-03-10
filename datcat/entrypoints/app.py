@@ -1,3 +1,7 @@
+import json
+from contextlib import suppress
+from json.decoder import JSONDecodeError
+
 from fastapi import FastAPI, status
 from fastapi.encoders import jsonable_encoder
 from fastapi.responses import JSONResponse, RedirectResponse
@@ -101,13 +105,24 @@ def search_mapping_by_key(schema_name_version: str, refresh: bool):
 
 @app.get("/{ROOT:path}/pii/list/refresh/{refresh}")
 def list_pii_fields(refresh: bool):
+    def is_pii(field_description: str):
+        with suppress(JSONDecodeError):
+            field_description = json.loads(field_description)
+            field_description = field_description.get("pii", False)
+            return field_description
 
     if refresh:
         refresh_repository(repository_type="schema")
 
-    response = MAPPINGS_REPOSITORY.list_all()
+    response = SCHEMA_REPOSITORY.list_all()
 
     if not response:
         return status.HTTP_204_NO_CONTENT
 
-    return json_response(response)
+    pii_fields = dict()
+    for schema_name, fields in response.items():
+        pii_fields[schema_name] = [
+            field["name"] for field in fields if is_pii(field["description"])
+        ]
+
+    return json_response(pii_fields)
