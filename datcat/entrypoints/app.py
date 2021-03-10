@@ -18,7 +18,11 @@ SCHEMA_REPOSITORY = repository.SchemaRepository()
 MAPPINGS_REPOSITORY = repository.MappingsRepository()
 ROOT = "/v1/datcat"
 
-app = FastAPI()
+app = FastAPI(
+    title="datcat",
+    description="A simple data catalogue for GCP based event ingestion",
+    version="0.1.3",
+)
 
 
 def json_response(response):
@@ -40,8 +44,8 @@ def refresh_repository(repository_type: str) -> None:
 
 
 @app.get("/")
-async def root():
-    return RedirectResponse(ROOT, status_code=302)
+async def default():
+    return RedirectResponse("/docs", status_code=302)
 
 
 @app.get("/{ROOT:path}/schemas/list/refresh/{refresh}")
