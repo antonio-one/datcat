@@ -56,8 +56,8 @@ def list_catalogue(refresh: bool) -> jsonable_encoder:
 
     response = SCHEMA_REPOSITORY.list_all()
 
-    if not response:
-        return status.HTTP_204_NO_CONTENT
+    if response is None:
+        return status.HTTP_404_NOT_FOUND
 
     return json_response(response)
 
@@ -73,8 +73,8 @@ def search_schema_by_key(schema_name: str, version: int, refresh: bool):
 
     response = SCHEMA_REPOSITORY.get(sf.schema_name_version)
 
-    if not response:
-        return status.HTTP_204_NO_CONTENT
+    if response is None:
+        return status.HTTP_404_NOT_FOUND
 
     return json_response(response)
 
@@ -87,8 +87,8 @@ def list_mappings(refresh: bool):
 
     response = MAPPINGS_REPOSITORY.list_all()
 
-    if not response:
-        return status.HTTP_204_NO_CONTENT
+    if response is None:
+        return status.HTTP_404_NOT_FOUND
 
     return json_response(response)
 
@@ -101,8 +101,8 @@ def search_mapping_by_key(schema_name_version: str, refresh: bool):
 
     response = MAPPINGS_REPOSITORY.get(key=schema_name_version)
 
-    if not response:
-        return status.HTTP_204_NO_CONTENT
+    if response is None:
+        return status.HTTP_404_NOT_FOUND
 
     return json_response(response)
 
@@ -115,8 +115,8 @@ def list_pii_fields(refresh: bool):
 
     response = SCHEMA_REPOSITORY.list_all()
 
-    if not response:
-        return status.HTTP_204_NO_CONTENT
+    if response is None:
+        return status.HTTP_404_NOT_FOUND
 
     pii_fields = dict()
     for schema_name, fields in response.items():
