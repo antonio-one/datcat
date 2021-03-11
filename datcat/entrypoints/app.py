@@ -109,11 +109,6 @@ def search_mapping_by_key(schema_name_version: str, refresh: bool):
 
 @app.get("/{ROOT:path}/pii/list/refresh/{refresh}")
 def list_pii_fields(refresh: bool):
-    def is_pii(field_description: str):
-        with suppress(JSONDecodeError):
-            field_description = json.loads(field_description)
-            field_description = field_description.get("pii", False)
-            return field_description
 
     if refresh:
         refresh_repository(repository_type="schema")
@@ -130,3 +125,10 @@ def list_pii_fields(refresh: bool):
         ]
 
     return json_response(pii_fields)
+
+
+def is_pii(field_description: str):
+    with suppress(JSONDecodeError):
+        field_description = json.loads(field_description)
+        field_description = field_description.get("pii", False)
+        return field_description
