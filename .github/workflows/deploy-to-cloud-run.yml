@@ -1,4 +1,4 @@
-name: Deploy to Kubernetes
+name: Deploy to Cloud Run
 
 on:
   push:
@@ -17,7 +17,7 @@ jobs:
         steps:
 
         - name: Login
-          uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+          uses: google-github-actions/setup-gcloud@master
           with:
             project_id: ${{ secrets.GCP_PROJECT_ID }}
             service_account_email: ${{ secrets.GCP_EMAIL }}
@@ -40,7 +40,7 @@ jobs:
 
         - name: Create Deployment
           run: |
-            gcloud run deploy --image $IMAGE  --platform managed
+            gcloud run deploy --image=$IMAGE  --platform managed
 #            gcloud config set project ${{ secrets.GCP_PROJECT_ID }}
 #            gcloud config set compute/zone europe-west2-c
 #            gcloud config set compute/region europe-west2
