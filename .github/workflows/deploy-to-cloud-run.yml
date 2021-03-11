@@ -13,13 +13,6 @@ jobs:
         env:
           VERSION: 0.1.3
           IMAGE_NAME: gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_APP_NAME }}
-#          SCHEMAS_PATH: "catalogue/schemas"
-#          METADATA_PATH: "catalogue/metadata"
-#          MAPPINGS_FILEPATH: "catalogue/mappings/schema_topic_subscription.json"
-#          CATALOGUE_SCHEME: "http"
-#          CATALOGUE_HOST: "0.0.0.0"
-#          CATALOGUE_PORT: 8081
-#          CATALOGUE_DEBUG: "False"
 
         steps:
 
@@ -36,31 +29,22 @@ jobs:
         - name: Checkout repository
           uses: actions/checkout@v2
 
-#        - name: Create .env file
-#          run: |
-#            echo SCHEMAS_PATH=${SCHEMAS_PATH} >> .env
-#            echo METADATA_PATH=${METADATA_PATH} >> .env
-#            echo MAPPINGS_FILEPATH=${MAPPINGS_FILEPATH} >> .env
-#            echo CATALOGUE_SCHEME=${CATALOGUE_SCHEME} >> .env
-#            echo CATALOGUE_HOST=${CATALOGUE_HOST} >> .env
-#            echo CATALOGUE_PORT=${CATALOGUE_PORT} >> .env
-#            echo CATALOGUE_DEBUG=${CATALOGUE_DEBUG} >> .env
-
-#        - name: Build Docker image
-#          run: docker build . -t $IMAGE_NAME
+        - name: Build Docker image
+          run: docker build . -t $IMAGE_NAME
 
 #        - name: Test Docker image
 #          run: docker run --env-file .env $IMAGE_NAME sh -c "some unfathomable command"
 
-#        - name: Push Docker image
-#          run: docker push $IMAGE_NAME
+        - name: Push Docker image
+          run: docker push $IMAGE_NAME
 
         - name: Create Deployment
           run: |
-            gcloud config set project ${{ secrets.GCP_PROJECT_ID }}
-            gcloud config set compute/zone europe-west2-c
-            gcloud config set compute/region europe-west2
-            gcloud container clusters get-credentials heuristic
+            gcloud run deploy --image $IMAGE  --platform managed
+#            gcloud config set project ${{ secrets.GCP_PROJECT_ID }}
+#            gcloud config set compute/zone europe-west2-c
+#            gcloud config set compute/region europe-west2
+#            gcloud container clusters get-credentials heuristic
 #            kubectl config current-context
 #            kubectl create deployment datcat-staging --image $IMAGE_NAME
 #            kubectl scale deployment datcat:0.1.3 --replicas=3
