@@ -28,3 +28,4 @@ ADD dist/${WHEEL} ./
 RUN pip3 install ${APPDIR}/${WHEEL}
 
 ENTRYPOINT ["python", "entrypoints/flask_app.py"]
+#CMD ["uvicorn", "datcat.entrypoints.app:app", "--host", "0.0.0.0", "--port", "80"]
