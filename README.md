@@ -1,14 +1,13 @@
 ## DatCat
-Simple data catalogue api.
+Simple data catalogue api for big query.
 Please note this is an alpha version and still in active development.
 
-###Convensions
+### Convensions
 Location: datcat/catalogue/schemas \
 Filetype: .json \
 Naming: your_schema_name_v1.json \
-Platform: bigquery
 
-###Format of a Simple Schema
+### Format of a Simple Schema
 ```json
 [
   {
@@ -25,59 +24,23 @@ Platform: bigquery
 ]
 ```
 
-### .env.example
+### Table options
+You may use {"partition": true} and/or {"pii": true} in the column description.
+
+
+### Run Datcat
+#### With Docker
 ```bash
-#settings
-SCHEMAS_PATH=catalogue/schemas
-METADATA_PATH=catalogue/metadata
-MAPPINGS_FILEPATH=catalogue/mappings/schema_topic_subscription.json
-
-CATALOGUE_SCHEME=http
-CATALOGUE_HOST=0.0.0.0
-CATALOGUE_PORT=50000
-CATALOGUE_DEBUG=False
+./docker-docker-build.sh
 ```
-### Build and Run it Inside a Docker Container Example
-Some useful code perhaps.
+Go to: http://0.0.0.0:50000 to see it
+#### With uvicorn directly
 ```bash
-source .env
-
-# cleanup
-docker rmi "$(docker images --filter dangling=true -q)" 2> /dev/null
-docker container prune --force 2> /dev/null
-rm dist/datcat* 2> /dev/null
-
-# build your container
-poetry build --format wheel
-docker build --tag datcat .
-
-# make a hostname for fun
-CONTAINER_HOSTNAME="datcat_"$(uuidgen | awk -F- "{print $1}")
-echo "CONTAINER_HOSTNAME=${CONTAINER_HOSTNAME}"
-
-# run it
-CONTAINER_ID=$(
-docker run --hostname "${CONTAINER_HOSTNAME}" \
-  --name datcat \
-  --env-file .env \
-  --publish 50000:"${CATALOGUE_PORT}" \
-  --detach datcat
-  )
-
-# copy the stop command to clipboard for convenience
-echo "docker stop ${CONTAINER_ID}" | pbcopy
-
-# container cli
-docker exec -it "${CONTAINER_ID}" /bin/bash
-```
-
-Now go to: http://0.0.0.0:50000 to see it
+uvicorn datcat.entrypoints.app:app --host 0.0.0.0 --port 80
+````
 
 ### Test Coverage
 ```bash
 cd tests
 pytest -vv --cov=. | grep -v .env
 ```
-
-### Partition support
-Note hack {"option": "partition"} in the column description.

@@ -48,11 +48,13 @@ async def default():
     return RedirectResponse("/docs", status_code=302)
 
 
+@app.get("/{ROOT:path}/schemas/list")
 @app.get("/{ROOT:path}/schemas/list/refresh/{refresh}")
-def list_catalogue(refresh: bool) -> jsonable_encoder:
+def list_catalogue(refresh: bool = False):
 
     if refresh:
-        refresh_repository(repository_type="schema")
+        SCHEMA_REPOSITORY.load()
+        # refresh_repository(repository_type="schema")
 
     response = SCHEMA_REPOSITORY.list_all()
 
