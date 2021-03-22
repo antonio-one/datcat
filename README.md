@@ -28,6 +28,11 @@ Naming: your_schema_name_v1.json \
 You may use {"partition": true} and/or {"pii": true} in the column description.
 
 
+### Recreate all mappings with every new schema:
+```bash
+python -m datcat.entrypoints.mappings
+
+```
 ### Run Datcat
 #### With Docker
 ```bash
