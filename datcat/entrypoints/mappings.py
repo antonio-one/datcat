@@ -5,11 +5,8 @@ from datcat.adapters import repository
 from datcat.domain import model
 from datcat.settings import MAPPINGS_FILEPATH, SCHEMAS_PATH
 
-FORMAT = "%(asctime)s %(levelname)s %(message)s"
-logging.basicConfig(level=logging.INFO, format=FORMAT)
 
-
-def create_mappings():
+def create():
     schema_repository = repository.SchemaRepository()
     schema_repository.load(schemas_path=SCHEMAS_PATH)
     repository_content = schema_repository.list_all()
@@ -22,7 +19,7 @@ def create_mappings():
         cf = model.MappingFormat(schema_name_version=schema_name_version)
         m_key = schema_name_version
         m_value = {
-            "schema_name": cf.schema_name,
+            "schema_class_name": cf.schema_name,
             "topic_name": cf.topic_name,
             "subscription_name": cf.subscription_name,
         }
@@ -33,3 +30,7 @@ def create_mappings():
         mf.write(json.dumps(m_repo, indent=2))
 
     logging.info(f"{MAPPINGS_FILEPATH} (re)created.")
+
+
+if __name__ == "__main__":
+    create()
