@@ -8,7 +8,7 @@ from fastapi.responses import JSONResponse, RedirectResponse
 
 from datcat.adapters import repository
 from datcat.domain import model
-from datcat.helpers import create_mappings
+from datcat.entrypoints.mappings import create as create_mappings
 from datcat.settings import (  # CATALOGUE_DEBUG,; CATALOGUE_HOST,; CATALOGUE_PORT,
     MAPPINGS_FILEPATH,
     SCHEMAS_PATH,
