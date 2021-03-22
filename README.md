@@ -7,6 +7,8 @@ Location: datcat/catalogue/schemas \
 Filetype: .json \
 Naming: your_schema_name_v1.json \
 
+_Note: the catalogue directory contains fake/example schemas. Replace them with your own_
+
 ### Format of a Simple Schema
 ```json
 [
