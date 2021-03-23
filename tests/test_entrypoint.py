@@ -78,7 +78,7 @@ def test_retrieve_schema_from_api_v1(test_client, schemas_path):
         assert actual == expected
 
 
-@pytest.mark.v0
+@pytest.mark.v1
 @pytest.mark.parametrize(
     "schema_name, schema_version, expected_status, expected_text",
     [
@@ -111,3 +111,18 @@ def test_retrieve_no_content_from_api_v1(
 
     assert response.status_code == expected_status
     assert response.json() == expected_text
+
+
+@pytest.mark.v1
+def test_list_all_from_api_v1(test_client, schemas_path):
+    url = "/v1/datcat/schemas/list/refresh/true"
+    response = test_client.get(url)
+    actual_schemas = response.json()
+    assert response.status_code == 200
+
+    expected_schemas: model.SchemaRepo = {}
+    for file_path in glob(f"{schemas_path}/*.json"):
+        schema_name = os.path.basename(os.path.splitext(file_path)[0])
+        with open(file_path, "r") as fp:
+            expected_schemas[schema_name] = json.loads(fp.read())
+    assert actual_schemas == expected_schemas
