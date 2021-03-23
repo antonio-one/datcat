@@ -3,9 +3,9 @@
 __pycache__
 .secrets
 .env
-build.sh
 catalogue/*/*.json
 .old
 .coverage
 **.pyc
 .ignored
+dist

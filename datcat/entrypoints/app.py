@@ -8,7 +8,7 @@ from fastapi.responses import JSONResponse, RedirectResponse
 
 from datcat.adapters import repository
 from datcat.domain import model
-from datcat.helpers import create_mappings
+from datcat.service_layer.mappings import create as create_mappings
 from datcat.settings import (  # CATALOGUE_DEBUG,; CATALOGUE_HOST,; CATALOGUE_PORT,
     MAPPINGS_FILEPATH,
     SCHEMAS_PATH,
@@ -34,11 +34,11 @@ def refresh_repository(repository_type: str) -> None:
 
     if repository_type == "schema":
         global SCHEMA_REPOSITORY
-        SCHEMA_REPOSITORY.load(SCHEMAS_PATH)
+        SCHEMA_REPOSITORY.load(schemas_path=SCHEMAS_PATH)
     elif repository_type == "mappings":
         create_mappings()
         global MAPPINGS_REPOSITORY
-        MAPPINGS_REPOSITORY.load(MAPPINGS_FILEPATH)
+        MAPPINGS_REPOSITORY.load(mappings_filepath=MAPPINGS_FILEPATH)
     else:
         raise Warning(f"Invalid {repository_type=}")
 
@@ -48,11 +48,12 @@ async def default():
     return RedirectResponse("/docs", status_code=302)
 
 
+@app.get("/{ROOT:path}/schemas/list")
 @app.get("/{ROOT:path}/schemas/list/refresh/{refresh}")
-def list_catalogue(refresh: bool) -> jsonable_encoder:
+def list_catalogue(refresh: bool = False):
 
     if refresh:
-        refresh_repository(repository_type="schema")
+        SCHEMA_REPOSITORY.load(schemas_path=SCHEMAS_PATH)
 
     response = SCHEMA_REPOSITORY.list_all()
 
@@ -67,7 +68,6 @@ def search_schema_by_key(schema_name: str, version: int, refresh: bool):
     sf = model.SchemaFormat(
         schema_name=schema_name, schema_version=version, refresh=refresh
     )
-
     if refresh:
         refresh_repository(repository_type="schema")
 
