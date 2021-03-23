@@ -26,9 +26,6 @@ Here's a quick snippet if you are as lazy as I am:
 Currently, datcat supports partition generation and pii identification via tagging the relevant column's description with `{"partition": true}` and/or `{"pii": true}`.
 ```json
 [
-  ...
-  ...
-  ...
   {
     "description": "{\"pii\": true}",
     "mode": "REQUIRED",
@@ -44,7 +41,7 @@ Currently, datcat supports partition generation and pii identification via taggi
 ]
 ```
 
-In addition to serving schema definitions via its api, it  creates a basic mapping between a schema - topic - subscriber that is later used to create the relevant infrastructure [[1]](footnote-1) from the schema definition.
+In addition to serving schema definitions via its api, it  creates a basic mapping between a schema - topic - subscriber that is later used to create the relevant infrastructure [[1]](#footnote-1) from the schema definition.
 After the schemas are defined run `python -m datcat.service_layer.mappings` to create those mappings. The naming conventions are basic, with each topic containing all versions of an event and each topic having only one subscriber for the purposes of data lake ingestion alone.
 
 ```json
@@ -54,12 +51,10 @@ After the schemas are defined run `python -m datcat.service_layer.mappings` to c
     "schema_class_name": "login",
     "topic_name": "login_topic",
     "subscription_name": "login_subscription"
-  },
-  ...
-  ...
-  ...
+  }
+}
 ```
 CI/CD is your gig but if you fancy seeing datcat in action in your local docker run `./docker-docker-build.sh` and go to: http://0.0.0.0:50000
 
-#### Footnote- 1
+#### Footnote 1
 IAM and general permissions are out of scope in this project. It's up to you to ensure your service account has all the necessary roles/permissions to create bigquery tables and topics/subscribers. Check [this](https://cloud.google.com/iam/docs/understanding-roles) for a reminder.
