@@ -3,7 +3,7 @@ from flask_api import FlaskAPI, status
 
 from datcat.adapters import repository
 from datcat.domain import model
-from datcat.entrypoints.mappings import create as create_mappings
+from datcat.service_layer.mappings import create as create_mappings
 from datcat.settings import (
     CATALOGUE_DEBUG,
     CATALOGUE_HOST,
