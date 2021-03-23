@@ -9,3 +9,4 @@ catalogue/*/*.json
 **.pyc
 .ignored
 dist
+.ignored
