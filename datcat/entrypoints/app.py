@@ -34,11 +34,11 @@ def refresh_repository(repository_type: str) -> None:
 
     if repository_type == "schema":
         global SCHEMA_REPOSITORY
-        SCHEMA_REPOSITORY.load(SCHEMAS_PATH)
+        SCHEMA_REPOSITORY.load(schemas_path=SCHEMAS_PATH)
     elif repository_type == "mappings":
         create_mappings()
         global MAPPINGS_REPOSITORY
-        MAPPINGS_REPOSITORY.load(MAPPINGS_FILEPATH)
+        MAPPINGS_REPOSITORY.load(mappings_filepath=MAPPINGS_FILEPATH)
     else:
         raise Warning(f"Invalid {repository_type=}")
 
@@ -53,7 +53,7 @@ async def default():
 def list_catalogue(refresh: bool = False):
 
     if refresh:
-        SCHEMA_REPOSITORY.load()
+        SCHEMA_REPOSITORY.load(schemas_path=SCHEMAS_PATH)
         # refresh_repository(repository_type="schema")
 
     response = SCHEMA_REPOSITORY.list_all()
@@ -69,7 +69,6 @@ def search_schema_by_key(schema_name: str, version: int, refresh: bool):
     sf = model.SchemaFormat(
         schema_name=schema_name, schema_version=version, refresh=refresh
     )
-
     if refresh:
         refresh_repository(repository_type="schema")
 
