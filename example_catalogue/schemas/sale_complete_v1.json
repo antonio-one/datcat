@@ -1,0 +1,56 @@
+[
+{
+    "description": "",
+    "mode": "REQUIRED",
+    "name": "event_timestamp",
+    "type": "TIMESTAMP"
+  },
+{
+    "description": "",
+    "mode": "REQUIRED",
+    "name": "event_name",
+    "type": "STRING"
+  },
+{
+    "description": "",
+    "mode": "REQUIRED",
+    "name": "event_version",
+    "type": "INTEGER"
+  },
+  {
+    "description": "",
+    "mode": "REQUIRED",
+    "name": "user_id",
+    "type": "STRING"
+  },
+  {
+    "description": "",
+    "mode": "REQUIRED",
+    "name": "transaction_id",
+    "type": "STRING"
+  },
+  {
+    "description": "",
+    "mode": "REQUIRED",
+    "name": "column_1",
+    "type": "FLOAT"
+  },
+  {
+    "description": "",
+    "mode": "REQUIRED",
+    "name": "column_2",
+    "type": "TIMESTAMP"
+  },
+  {
+    "description": "",
+    "mode": "REQUIRED",
+    "name": "column_3",
+    "type": "BOOLEAN"
+  },
+  {
+    "description": "{\"partition\": true}",
+    "mode": "REQUIRED",
+    "name": "date",
+    "type": "DATE"
+  }
+]

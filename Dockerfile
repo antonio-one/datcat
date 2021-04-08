@@ -16,9 +16,9 @@ FROM os-base as app-base
 
 ARG APPDIR=/datcat
 WORKDIR ${APPDIR}/
-COPY catalogue ./catalogue
+COPY example_catalogue ./example_catalogue
 COPY datcat ./datcat
-ADD dist ./dist
+COPY dist ./dist
 RUN pip3 install ${APPDIR}/dist/*.whl
 
 # stage 3

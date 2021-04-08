@@ -21,7 +21,7 @@ ROOT = "/v1/datcat"
 app = FastAPI(
     title="datcat",
     description="A simple data catalogue for GCP based event ingestion",
-    version="0.1.3",
+    version="0.1.5",
 )
 
 
@@ -35,7 +35,7 @@ def refresh_repository(repository_type: str) -> None:
     if repository_type == "schema":
         global SCHEMA_REPOSITORY
         SCHEMA_REPOSITORY.load(schemas_path=SCHEMAS_PATH)
-    elif repository_type == "mappings":
+    elif repository_type == "mapping":
         create_mappings()
         global MAPPINGS_REPOSITORY
         MAPPINGS_REPOSITORY.load(mappings_filepath=MAPPINGS_FILEPATH)

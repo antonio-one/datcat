@@ -1,0 +1,56 @@
+[
+{
+    "description": "",
+    "mode": "REQUIRED",
+    "name": "event_timestamp",
+    "type": "TIMESTAMP"
+  },
+{
+    "description": "",
+    "mode": "REQUIRED",
+    "name": "event_name",
+    "type": "STRING"
+  },
+{
+    "description": "",
+    "mode": "REQUIRED",
+    "name": "event_version",
+    "type": "INTEGER"
+  },
+  {
+    "description": "{\"pii\": true}",
+    "mode": "REQUIRED",
+    "name": "first_name",
+    "type": "STRING"
+  },
+  {
+    "description": "{\"pii\": true}",
+    "mode": "REQUIRED",
+    "name": "last_name",
+    "type": "STRING"
+  },
+  {
+    "description": "",
+    "mode": "REQUIRED",
+    "name": "integer_1",
+    "type": "INTEGER"
+  },
+  {
+    "description": "",
+    "mode": "REQUIRED",
+    "name": "string_2",
+    "type": "STRING"
+  },
+  {
+    "description": "",
+    "mode": "REQUIRED",
+    "name": "timestamp_3",
+    "type": "TIMESTAMP"
+  },
+  {
+    "description": "{\"partition\": true}",
+    "mode": "REQUIRED",
+    "name": "date",
+    "type": "DATE"
+  }
+]

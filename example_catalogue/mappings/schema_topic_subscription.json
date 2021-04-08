@@ -1,0 +1,7 @@
+{
+  "registration_v1": {
+    "schema_class_name": "registration",
+    "topic_name": "registration_topic",
+    "subscription_name": "registration_subscription"
+  }
+}
